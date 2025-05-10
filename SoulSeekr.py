@@ -71,7 +71,7 @@ class CheatEngine(QWidget):
         pid = self.process_dropdown.currentData()
         try:
             self.pm = pymem.Pymem()
-            self.pm.open_process(pid)
+            self.pm = pymem.Pymem(pid)
             self.process_name = psutil.Process(pid).name()
             self.output.append(f"Attached to {self.process_name} (PID: {pid})")
         except Exception as e:
