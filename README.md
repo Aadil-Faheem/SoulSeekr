@@ -33,6 +33,10 @@ B. Finding Value in Selected Process
   - Search for specific integer values in a process's memory
   - Display all matching addresses
 
+- 🔄 **Next Scan (Refine Results)**
+  - Filter previous scan results after value changes
+  - Allows more refined results
+
 <br>
 <hr>
 <br>
@@ -76,9 +80,6 @@ python SoulSeekr.py
 <br>
 
 ## 🧠 Roadmap / Upcoming Features
-
-- 🔄 **Next Scan (Refine Results)**
-  - Filter previous scan results after value changes
 
 - ❄️ **Freeze / Lock Value**
   - Constantly write a fixed value (e.g., infinite health)
