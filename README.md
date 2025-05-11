@@ -37,6 +37,12 @@ B. Finding Value in Selected Process
   - Filter previous scan results after value changes
   - Allows more refined results
 
+- 📝 **Manual Address Editor**
+  - Write a custom value to a known address
+
+- ❄️ **Freeze / Lock Value**
+  - Constantly write a fixed value (e.g., Infinite health, Ammo etc)
+
 <br>
 <hr>
 <br>
@@ -81,9 +87,6 @@ python SoulSeekr.py
 
 ## 🧠 Roadmap / Upcoming Features
 
-- ❄️ **Freeze / Lock Value**
-  - Constantly write a fixed value (e.g., infinite health)
-
 - 🧭 **Pointer Scanner**
   - Resolve dynamic addresses via pointer chain scanning
 
@@ -95,9 +98,6 @@ python SoulSeekr.py
 
 - 🌙 **Dark Mode**
   - Toggle for UI appearance
-
-- 📝 **Manual Address Editor**
-  - Write a custom value to a known address
 
 - 👁️ **Live Value Monitor**
   - Show real-time updates at tracked addresses

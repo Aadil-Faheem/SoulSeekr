@@ -3,6 +3,7 @@ import ctypes
 import os
 import win32api
 import win32con
+import threading
 from ctypes import wintypes
 from PyQt5 import QtWidgets, QtGui
 import pymem
@@ -26,11 +27,12 @@ class SoulSeekr(QtWidgets.QWidget):
         super().__init__()
         self.previous_scan_results = []
         self.last_scan_type = ""
+        self.lock_threads = []
         self.initUI()
 
     def initUI(self):
         self.setWindowTitle("SoulSeekr - Memory Scanner")
-        self.setGeometry(100, 100, 700, 500)
+        self.setGeometry(100, 100, 700, 600)
 
         layout = QtWidgets.QVBoxLayout()
 
@@ -65,6 +67,22 @@ class SoulSeekr(QtWidgets.QWidget):
         self.nextScanButton = QtWidgets.QPushButton("🔄 Next Scan")
         self.nextScanButton.clicked.connect(self.nextScan)
         layout.addWidget(self.nextScanButton)
+
+        self.manualAddressInput = QtWidgets.QLineEdit()
+        self.manualAddressInput.setPlaceholderText("Enter memory address (e.g., 0x1234ABCD)")
+        layout.addWidget(self.manualAddressInput)
+
+        self.manualValueInput = QtWidgets.QLineEdit()
+        self.manualValueInput.setPlaceholderText("Enter value to write")
+        layout.addWidget(self.manualValueInput)
+
+        self.writeValueButton = QtWidgets.QPushButton("✏️ Write Value")
+        self.writeValueButton.clicked.connect(self.writeManualValue)
+        layout.addWidget(self.writeValueButton)
+
+        self.freezeValueButton = QtWidgets.QPushButton("🧊 Freeze Value")
+        self.freezeValueButton.clicked.connect(self.freezeValue)
+        layout.addWidget(self.freezeValueButton)
 
         self.output = QtWidgets.QTextEdit()
         self.output.setReadOnly(True)
@@ -170,6 +188,34 @@ class SoulSeekr(QtWidgets.QWidget):
         self.output.append(f"🔄 Refined: {len(new_results)} addresses matched.")
         self.previous_scan_results = new_results
         self.displayResults(new_results)
+
+    def writeManualValue(self):
+        try:
+            addr = int(self.manualAddressInput.text(), 16)
+            val = int(self.manualValueInput.text())
+            self.pm.write_int(addr, val)
+            self.output.append(f"✏️ Wrote {val} to {hex(addr)}")
+        except Exception as e:
+            self.output.append(f"❌ Failed to write: {str(e)}")
+
+    def freezeValue(self):
+        try:
+            addr = int(self.manualAddressInput.text(), 16)
+            val = int(self.manualValueInput.text())
+            thread = threading.Thread(target=self.lockLoop, args=(addr, val), daemon=True)
+            thread.start()
+            self.lock_threads.append(thread)
+            self.output.append(f"🧊 Freezing {hex(addr)} with value {val}")
+        except Exception as e:
+            self.output.append(f"❌ Freeze failed: {str(e)}")
+
+    def lockLoop(self, addr, val):
+        while True:
+            try:
+                self.pm.write_int(addr, val)
+            except:
+                break
+            ctypes.windll.kernel32.Sleep(100)
 
     def getComparisonFunction(self, scan_type, target_value):
         try:
