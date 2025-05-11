@@ -1,27 +1,17 @@
-# 🛠️ SoulSeekr - Memory Scanner & Editor (WIP)
 
-**SoulSeekr** is a lightweight, GUI-based memory scanner built with **Python + PyQt5** and powered by `pymem`.  
-It allows you to attach to running processes and search memory for values — similar to Cheat Engine.
+![Chic Website Homepage Fashion Collage Banner](https://github.com/user-attachments/assets/01db407e-58d0-4170-a945-cf8307ff237d)
 
+<br>
+<div align="center">
+
+<h1><strong>☠️SoulSeekr - Memory Scanner & Editor (WIP)</strong></h1>
+
+**SoulSeekr** is a lightweight, GUI-based memory manipulation script built with **Python + PyQt5** and powered by `pymem`.  
+It allows you to attach to running processes, Search memory for values, Update them and Freeze them — similar to Cheat Engine.
+
+</div>
 <br>
 <hr>
-<br>
-
-## 📷 Screenshots
-<br>
-
-![1](https://github.com/user-attachments/assets/3d1d990a-f53f-423c-a200-713785966360)
-
-A. Basic Layout with Process Selection
-
-<br><br>
-![2](https://github.com/user-attachments/assets/daf4d3e9-9a5e-4780-9e16-c5840ac43b02)
-
-B. Finding Value in Selected Process
-
-<br>
-<hr>
-<br>
 
 ## ✅ Current Features
 
@@ -107,6 +97,24 @@ python SoulSeekr.py
 
 - 📊 **Process Memory Map**
   - View loaded modules, address ranges, base addresses
+
+<br>
+<hr>
+<br>
+
+## 📷 Videos/ScreenShots
+
+<div align="center">
+  
+[![Watch the demo](https://img.youtube.com/vi/_fO4bzilDqs/hqdefault.jpg)](https://youtu.be/_fO4bzilDqs)
+
+<h1><strong>Watch The Demo!</strong></h1>
+
+</div>
+
+![3](https://github.com/user-attachments/assets/8090f376-c3cc-4609-840b-e3bc927a74ab)
+![4](https://github.com/user-attachments/assets/c002affe-4adc-4664-a3cc-205b8287dc14)
+
 
 <br>
 <hr>
